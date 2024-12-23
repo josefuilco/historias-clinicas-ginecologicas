@@ -3,7 +3,7 @@ import { RoleEntity } from "./role.entity";
 import { Role } from "src/auth/domain/enums/role.enum";
 import { UserEntity } from "./user.entity";
 
-@Table({ tableName: 'accounts' })
+@Table({ tableName: 'accounts', timestamps: true })
 export class AccountEntity extends Model<AccountEntity> {
   @PrimaryKey
   @AutoIncrement
@@ -16,11 +16,8 @@ export class AccountEntity extends Model<AccountEntity> {
   @Column({ type: DataType.STRING(60), allowNull: false })
   password: string;
 
-  @Column({ type: DataType.DATE, allowNull: false })
-  createdAt: Date;
-
-  @Column({ type: DataType.DATE, allowNull: false })
-  updatedAt: Date;
+  @Column({ type: DataType.BOOLEAN, defaultValue: true })
+  isActive: boolean;
 
   @ForeignKey(() => UserEntity)
   @Column({ type: DataType.INTEGER, allowNull: false })

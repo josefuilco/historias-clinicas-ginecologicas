@@ -5,9 +5,10 @@ import { ACCOUNT_REPOSITORY } from "src/auth/domain/repositories/account.reposit
 import { MysqlAccountRepository } from "./repositories/mysqlAccount.repository";
 import { RoleEntity } from "./entities/role.entity";
 import { RolesMigration } from "./migrations/roles.migration";
+import { UserEntity } from "./entities/user.entity";
 
 @Module({
-  imports: [SequelizeModule.forFeature([AccountEntity, RoleEntity])],
+  imports: [SequelizeModule.forFeature([AccountEntity, UserEntity, RoleEntity])],
   providers: [
     RolesMigration,
     {

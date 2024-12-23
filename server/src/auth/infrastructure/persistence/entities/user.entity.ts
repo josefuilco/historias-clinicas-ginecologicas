@@ -1,7 +1,7 @@
 import { AutoIncrement, Column, DataType, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { AccountEntity } from "./account.entity";
 
-@Table({ tableName: 'users', timestamps: false })
+@Table({ tableName: 'users' })
 export class UserEntity extends Model<UserEntity> {
   @PrimaryKey
   @AutoIncrement

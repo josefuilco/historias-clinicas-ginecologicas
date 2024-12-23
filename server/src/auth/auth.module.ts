@@ -1,12 +1,9 @@
 import { Module } from "@nestjs/common";
-import { PersistenceModule } from "./infrastructure/persistence/persistence.module";
 import { AccountService } from "./application/services/account.service";
+import { ApplicationModule } from "./application/application.module";
+import { InfrastructureModule } from "./infrastructure/infrastructure.module";
 
 @Module({
-  imports: [PersistenceModule],
-  controllers: [],
-  providers: [
-    AccountService
-  ]
+  imports: [ApplicationModule, InfrastructureModule]
 })
 export class AuthModule {}

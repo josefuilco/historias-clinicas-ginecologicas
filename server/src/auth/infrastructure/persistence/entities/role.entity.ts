@@ -1,7 +1,7 @@
 import { Column, DataType, HasMany, Model, NotNull, PrimaryKey, Table } from "sequelize-typescript";
 import { AccountEntity } from "./account.entity";
 
-@Table({ tableName: 'roles', timestamps: false })
+@Table({ tableName: 'roles' })
 export class RoleEntity extends Model<RoleEntity> {
   @PrimaryKey
   @Column({ type: DataType.INTEGER, autoIncrement: true })

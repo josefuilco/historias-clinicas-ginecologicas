@@ -1,5 +1,6 @@
-export class UserInfoDto {
+export class AccountInformationDto {
   fullname: string;
+  email: string;
   cellphone: string;
   role: string;
-}
+} 

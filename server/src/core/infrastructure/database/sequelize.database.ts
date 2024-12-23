@@ -23,6 +23,7 @@ export const sequelizeDatabase: SequelizeModuleOptions = {
   autoLoadModels: envs.IS_DEVELOPMENT,
   synchronize: envs.IS_DEVELOPMENT,
   sync: { alter: envs.IS_DEVELOPMENT },
+  define: { timestamps: false },
   logging: envs.IS_DEVELOPMENT
     ? console.log
     : false

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { envs } from 'src/core/infrastructure/config/env.config';
-import { ITokenProvider } from "src/auth/domain/providers/token.provider";
+import { ITokenProvider } from "src/core/domain/providers/token.provider";
 
 
 export class JwtTokenProvider implements ITokenProvider {

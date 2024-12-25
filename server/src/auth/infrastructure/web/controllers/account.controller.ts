@@ -3,8 +3,8 @@ import { AccountService } from "src/auth/application/services/account.service";
 import { CreateAccountDto } from "../dtos/createAccount.dto";
 import { Account } from "src/auth/domain/models/account.model";
 import { User } from "src/auth/domain/models/user.model";
-import { AuthGuard } from "../guards/auth.guard";
-import { AccountRequest } from "../requests/account.request";
+import { AuthGuard } from "../../../../core/infrastructure/web/guards/auth.guard";
+import { AccountRequest } from "../../../../core/infrastructure/web/requests/account.request";
 
 @Controller('accounts')
 export class AccountController {

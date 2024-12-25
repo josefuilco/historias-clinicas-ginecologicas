@@ -1,8 +1,7 @@
 import { CanActivate, ExecutionContext, Inject } from "@nestjs/common";
 import { Observable } from "rxjs";
 import { AccountRequest } from "../requests/account.request";
-import { ITokenProvider, TOKEN_PROVIDER } from "src/auth/domain/providers/token.provider";
-import { AccountPayloadDto } from "src/auth/application/dtos/acccountPayload.dto";
+import { ITokenProvider, TOKEN_PROVIDER } from "src/core/domain/providers/token.provider";
 
 export class AuthGuard implements CanActivate {
   constructor(
@@ -17,7 +16,7 @@ export class AuthGuard implements CanActivate {
       return false;
 
     try {
-      const tokenExtracted = this.tokenProvider.readToken<AccountPayloadDto>(authorizationHeader);
+      const tokenExtracted = this.tokenProvider.readToken(authorizationHeader);
       request.accountId = tokenExtracted.accountId;
       request.roleId = tokenExtracted.roleId;
       return true;

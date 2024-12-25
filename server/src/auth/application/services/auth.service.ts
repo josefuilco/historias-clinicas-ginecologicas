@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { ACCOUNT_REPOSITORY, IAccountRepository } from "src/auth/domain/repositories/account.repository";
 import { CIPHERED_PROVIDER, ICipheredProvider } from "src/auth/domain/providers/ciphered.provider";
-import { ITokenProvider, TOKEN_PROVIDER } from "src/auth/domain/providers/token.provider";
+import { ITokenProvider, TOKEN_PROVIDER } from "src/core/domain/providers/token.provider";
 import { AccountPayloadDto } from "../dtos/acccountPayload.dto";
 import { AccountNotFoundError } from "src/auth/domain/errors/accountNotFound.error";
 import { PasswordIncorrectError } from "src/auth/domain/errors/passwordIncorrect.error";

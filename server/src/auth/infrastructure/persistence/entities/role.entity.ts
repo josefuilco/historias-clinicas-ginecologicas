@@ -1,4 +1,4 @@
-import { Column, DataType, HasMany, Model, NotNull, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, PrimaryKey, Table } from "sequelize-typescript";
 import { AccountEntity } from "./account.entity";
 
 @Table({ tableName: 'roles' })

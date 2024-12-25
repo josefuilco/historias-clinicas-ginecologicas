@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
 import { AccountService } from "./application/services/account.service";
 import { AuthService } from "./application/services/auth.service";
-import { TOKEN_PROVIDER } from "./domain/providers/token.provider";
-import { JwtTokenProvider } from "./infrastructure/providers/jwtToken.provider";
+import { TOKEN_PROVIDER } from "../core/domain/providers/token.provider";
+import { JwtTokenProvider } from "../core/infrastructure/providers/jwtToken.provider";
 import { CIPHERED_PROVIDER } from "./domain/providers/ciphered.provider";
 import { BcryptCipheredProvider } from "./infrastructure/providers/bcryptCiphered.provider";
 import { PersistenceModule } from "./infrastructure/persistence/persistence.module";

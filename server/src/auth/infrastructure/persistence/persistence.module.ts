@@ -16,11 +16,6 @@ import { UserEntity } from "./entities/user.entity";
       useClass: MysqlAccountRepository
     }
   ],
-  exports: [
-    {
-      provide: ACCOUNT_REPOSITORY,
-      useClass: MysqlAccountRepository
-    }
-  ],
+  exports: [ACCOUNT_REPOSITORY]
 })
 export class PersistenceModule {}

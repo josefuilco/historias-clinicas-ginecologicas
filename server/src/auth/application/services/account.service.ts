@@ -8,7 +8,7 @@ import { AccountNotUpdatedError } from "src/auth/domain/errors/accountNotUpdated
 import { AccountNotFoundError } from "src/auth/domain/errors/accountNotFound.error";
 import { Role } from "src/auth/domain/enums/role.enum";
 import { AccountNotDeletedError } from "src/auth/domain/errors/accountNotDeleted.error";
-import { CIPHERED_SERVICE, ICipheredService } from "src/auth/domain/services/ciphered.service";
+import { CIPHERED_PROVIDER, ICipheredProvider } from "src/auth/domain/providers/ciphered.provider";
 import { PasswordIncorrectError } from "src/auth/domain/errors/passwordIncorrect.error";
 
 @Injectable()
@@ -16,12 +16,12 @@ export class AccountService {
   constructor(
     @Inject(ACCOUNT_REPOSITORY)
     private readonly accountRepository: IAccountRepository,
-    @Inject(CIPHERED_SERVICE)
-    private readonly cipheredService: ICipheredService
+    @Inject(CIPHERED_PROVIDER)
+    private readonly cipheredProvider: ICipheredProvider
   ) {}
 
   async createAccount(account: Account, user: User): Promise<void> {
-    account.password = await this.cipheredService.encrypt(account.password);
+    account.password = await this.cipheredProvider.encrypt(account.password);
     const isCreated = await this.accountRepository.createAccount(account, user);
     if (!isCreated)
       throw new AccountNotCreatedError();
@@ -32,11 +32,11 @@ export class AccountService {
     if (!accountFound)
       throw new AccountNotFoundError();
 
-    const passwordAreEquals = await this.cipheredService.compare(oldPassword, accountFound.password);
+    const passwordAreEquals = await this.cipheredProvider.compare(oldPassword, accountFound.password);
     if (!passwordAreEquals)
       throw new PasswordIncorrectError();
 
-    accountFound.password = await this.cipheredService.encrypt(account.password);
+    accountFound.password = await this.cipheredProvider.encrypt(account.password);
     const isUpdated = await this.accountRepository.updateAccount(accountFound);
     if (!isUpdated)
       throw new AccountNotUpdatedError();

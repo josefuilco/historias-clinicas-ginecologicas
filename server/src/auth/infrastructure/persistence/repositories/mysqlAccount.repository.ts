@@ -3,7 +3,6 @@ import { InjectModel } from "@nestjs/sequelize";
 import { Account } from "src/auth/domain/models/account.model";
 import { IAccountRepository } from "src/auth/domain/repositories/account.repository";
 import { AccountEntity } from "../entities/account.entity";
-import { Role } from "src/auth/domain/enums/role.enum";
 import { User } from "src/auth/domain/models/user.model";
 import { UserEntity } from "../entities/user.entity";
 

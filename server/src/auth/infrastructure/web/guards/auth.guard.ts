@@ -1,10 +1,30 @@
-import { CanActivate, ExecutionContext } from "@nestjs/common";
-import { Request } from "express";
+import { CanActivate, ExecutionContext, Inject } from "@nestjs/common";
 import { Observable } from "rxjs";
+import { AccountRequest } from "../requests/account.request";
+import { ITokenProvider, TOKEN_PROVIDER } from "src/auth/domain/providers/token.provider";
+import { AccountPayloadDto } from "src/auth/application/dtos/acccountPayload.dto";
 
 export class AuthGuard implements CanActivate {
+  constructor(
+    @Inject(TOKEN_PROVIDER)
+    private readonly tokenProvider: ITokenProvider
+  ) {}
+  
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-    const request = context.switchToHttp().getRequest() as Request;
-    throw new Error("Method not implemented.");
+    const request: AccountRequest = context.switchToHttp().getRequest();
+    const authorizationHeader = request.headers.get('Authorization');
+    if (!authorizationHeader)
+      return false;
+
+    try {
+      const tokenExtracted = this.tokenProvider.readToken<AccountPayloadDto>(authorizationHeader);
+      request.accountId = tokenExtracted.accountId;
+      request.roleId = tokenExtracted.roleId;
+      return true;
+    } catch (error) {
+      if (error instanceof Error)
+        console.error(`${request.headers.get('Origin')} Token Invalid: `, error.message);
+      return false;
+    }
   }
 }

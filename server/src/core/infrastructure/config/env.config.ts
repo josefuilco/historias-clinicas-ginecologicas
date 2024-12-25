@@ -8,7 +8,8 @@ const envSchema = z.object({
   MYSQL_USERNAME: z.string().nonempty(),
   MYSQL_PASSWORD: z.string().nonempty(),
   MYSQL_DATABASE: z.string().nonempty(),
-  IS_DEVELOPMENT: z.coerce.boolean()
+  IS_DEVELOPMENT: z.coerce.boolean(),
+  JWT_SECRET: z.string().nonempty()
 }).required();
 
 export const envs = envSchema.parse(process.env);
